@@ -1,0 +1,95 @@
+
+
+
+              Add Code
+
+              SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=studentdb;Integrated Security=True");
+
+
+            con.Open();
+
+            SqlCommand cnn = new SqlCommand("insert into info_tab values(@studentid,@studentname,@age,@dob,@email,@phone)", con);
+
+            cnn.Parameters.AddWithValue("@Student_Id", int.Parse(textBox1.Text));
+            cnn.Parameters.AddWithValue("@Student_Name", textBox2.Text);
+
+            cnn.Parameters.AddWithValue("@Age", int.Parse(textBox3.Text));
+
+            
+
+            cnn.Parameters.AddWithValue("@Dob", DateTime.Parse(textBox4.Text));
+
+            cnn.Parameters.AddWithValue("@Email", textBox5.Text);
+
+            cnn.Parameters.AddWithValue("@Phone", textBox6.Text);
+
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Added Successfully", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+           Student_Info Load Code
+
+
+           SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=studentdb;Integrated Security=True");
+
+
+            SqlCommand cnn = new SqlCommand("select * from info_tab", con);
+
+            SqlDataAdapter da = new SqlDataAdapter(cnn);
+            DataTable table = new DataTable();
+            da.Fill(table);
+
+            dataGridView1.DataSource = table;
+
+
+
+
+         Update Code
+
+
+         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=studentdb;Integrated Security=True");
+
+
+            con.Open();
+
+            SqlCommand cnn = new SqlCommand("update info_tab set studentname=@studentname,age=@age,dob=@dob,email=@email,phone=@phone where student_id=@student_id", con);
+
+            cnn.Parameters.AddWithValue("@Student_Id", int.Parse(textBox1.Text));
+            cnn.Parameters.AddWithValue("@Student_Name", textBox2.Text);
+
+            cnn.Parameters.AddWithValue("@Age", int.Parse(textBox3.Text));
+
+            
+
+            cnn.Parameters.AddWithValue("@Dob", DateTime.Parse(textBox4.Text));
+
+            cnn.Parameters.AddWithValue("@Email", textBox5.Text);
+
+            cnn.Parameters.AddWithValue("@Phone", textBox6.Text);
+
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Updated Successfully", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+          Delete Code
+
+
+          SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=studentdb;Integrated Security=True");
+
+
+            con.Open();
+
+            SqlCommand cnn = new SqlCommand("delete info_tab where student_id=@student_id", con);
+
+            cnn.Parameters.AddWithValue("@Student_Id", int.Parse(textBox1.Text));
+            
+
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Deleted Successfully", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+         
